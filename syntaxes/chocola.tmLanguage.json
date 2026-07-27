@@ -5,6 +5,15 @@
   "fileTypes": [
     "html"
   ],
+  "injections": {
+    "L: text.html.chocola - (meta.embedded.block.js.chocola | meta.embedded.block.css.chocola)": {
+      "patterns": [
+        {
+          "include": "#interpolation"
+        }
+      ]
+    }
+  },
   "patterns": [
     {
       "include": "#script-tag"
