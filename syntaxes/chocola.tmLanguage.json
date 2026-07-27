@@ -50,7 +50,9 @@
       "name": "meta.embedded.block.js.chocola",
       "begin": "(<)(?i)(script)\\b(?=[^>]*/>|(?:[^>]*?(?:type\\s*=\\s*['\"](?:text/javascript|module|application/javascript)['\"])?[^>]*>))",
       "beginCaptures": {
-        "1": { "name": "entity.name.tag.html" },
+        "1": {
+          "name": "entity.name.tag.html"
+        },
         "2": {
           "name": "entity.name.tag.html"
         }
@@ -182,11 +184,15 @@
       "name": "meta.template.chocola",
       "begin": "(<template>)",
       "beginCaptures": {
-        "1": { "name": "entity.name.tag.html" }
+        "1": {
+          "name": "entity.name.tag.html"
+        }
       },
       "end": "(</template>)",
       "endCaptures": {
-        "1": { "name": "entity.name.tag.html" }
+        "1": {
+          "name": "entity.name.tag.html"
+        }
       },
       "patterns": [
         {
@@ -244,21 +250,26 @@
       "patterns": [
         {
           "include": "#chocola-attributes-kw"
+        },
+        {
+          "include": "#html-attributes"
         }
       ]
     },
     "chocola-attributes-kw": {
-      "match": "(?:\\s)(if|del:if|elif|else|bind:\\w+|\\$bake)(?=)",
+      "match": "(?:\\s)(if|del:if|elif|else|bind:\\w+|\\$bake)",
       "captures": {
-        "1": { "name": "storage.type.class.jsdoc" },
-        "2": { "name": "punctuation.separator.key-value.html" }
+        "1": {
+          "name": "storage.type.class.jsdoc"
+        }
       }
     },
-        "html-attributes": {
-      "match": "(if|del:if|elif|else|bind:\\w+|\\$bake)(?=)",
+    "html-attributes": {
+      "match": "(?:\\s)([a-z-]+)",
       "captures": {
-        "1": { "name": "storage.type.class.jsdoc" },
-        "2": { "name": "punctuation.separator.key-value.html" }
+        "1": {
+          "name": "entity.other.attribute-name.html"
+        }
       }
     },
     "html-comment": {
