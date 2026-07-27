@@ -249,14 +249,14 @@
       },
       "patterns": [
         {
-          "include": "#chocola-attributes-kw"
+          "include": "#chocola-attributes"
         },
         {
           "include": "#html-attributes"
         }
       ]
     },
-    "chocola-attributes-kw": {
+    "chocola-attributes": {
       "match": "(?:\\s)(if|del:if|elif|else|bind:\\w+|\\$bake)",
       "captures": {
         "1": {
