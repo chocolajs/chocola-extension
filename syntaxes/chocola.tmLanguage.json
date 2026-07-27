@@ -248,6 +248,13 @@
       ]
     },
     "chocola-attributes-kw": {
+      "match": "(?:\\s)(if|del:if|elif|else|bind:\\w+|\\$bake)(?=)",
+      "captures": {
+        "1": { "name": "storage.type.class.jsdoc" },
+        "2": { "name": "punctuation.separator.key-value.html" }
+      }
+    },
+        "html-attributes": {
       "match": "(if|del:if|elif|else|bind:\\w+|\\$bake)(?=)",
       "captures": {
         "1": { "name": "storage.type.class.jsdoc" },
