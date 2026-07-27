@@ -5,15 +5,6 @@
   "fileTypes": [
     "html"
   ],
-  "injections": {
-    "L: text.html.chocola - (meta.embedded.block.js.chocola | meta.embedded.block.css.chocola)": {
-      "patterns": [
-        {
-          "include": "#interpolation"
-        }
-      ]
-    }
-  },
   "patterns": [
     {
       "include": "#script-tag"
@@ -26,26 +17,6 @@
     }
   ],
   "repository": {
-    "interpolation": {
-      "name": "meta.interpolation.chocola",
-      "begin": "(?<!=)\\{",
-      "end": "\\}",
-      "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.interpolation.begin.chocola"
-        }
-      },
-      "endCaptures": {
-        "0": {
-          "name": "meta.tag.attributes.html"
-        }
-      },
-      "patterns": [
-        {
-          "include": "source.js"
-        }
-      ]
-    },
     "script-tag": {
       "name": "meta.embedded.block.js.chocola",
       "begin": "(<)(?i)(script)\\b(?=[^>]*/>|(?:[^>]*?(?:type\\s*=\\s*['\"](?:text/javascript|module|application/javascript)['\"])?[^>]*>))",
@@ -71,21 +42,7 @@
       },
       "patterns": [
         {
-          "name": "source.js.chocola",
-          "patterns": [
-            {
-              "include": "#props-declaration"
-            },
-            {
-              "include": "#runtime-function"
-            },
-            {
-              "include": "#self-declaration"
-            },
-            {
-              "include": "source.js"
-            }
-          ]
+          "include": "source.js"
         }
       ]
     },
@@ -274,6 +231,26 @@
           "name": "entity.other.attribute-name.html"
         }
       }
+    },
+    "interpolation": {
+      "name": "meta.interpolation.chocola",
+      "begin": "(?<!=)\\{",
+      "end": "\\}",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.interpolation.begin.chocola"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "meta.tag.attributes.html"
+        }
+      },
+      "patterns": [
+        {
+          "include": "source.js"
+        }
+      ]
     },
     "html-comment": {
       "name": "comment.block.html",
