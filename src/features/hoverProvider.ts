@@ -17,9 +17,8 @@ const SPECIAL_ELEMENT_HOVERS: Record<string, string> = {
 };
 
 const SCRIPT_HOVERS: Record<string, string> = {
-  '$runtime': 'Lifecycle function that runs **once** after the component is mounted in the DOM.\n\n**Parameters:**\n- `self` — root DOM element of this component instance\n- `ctx` — object containing props and other dynamic values',
-  'self': 'Root DOM element of this component instance. Available inside `$runtime()` and after `bind:*` evaluation.',
-  'ctx': 'Object containing props and dynamic values for this component. Available inside `$runtime()`.',
+  'runtime': 'Lifecycle function that runs **once** after the component is mounted in the DOM.',
+  'self': 'Root element of this component',
 };
 
 export class ChocolaHoverProvider implements vscode.HoverProvider {
