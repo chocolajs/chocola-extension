@@ -1,0 +1,67 @@
+{
+  "name": "chocola-intellisense",
+  "displayName": "Chocola Intellisense",
+  "description": "Intellisense for Chocola SFC components — syntax highlighting, autocomplete, hover info, and diagnostics",
+  "version": "0.1.0",
+  "publisher": "chocola",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Linters"
+  ],
+  "activationEvents": [
+    "onLanguage:chocola",
+    "onLanguage:json",
+    "workspaceContains:**/chocola.config.json"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "chocola",
+        "aliases": ["Chocola", "chocola"],
+        "extensions": [".html"],
+        "filenames": [],
+        "configuration": "./language-configuration/language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "chocola",
+        "scopeName": "text.html.chocola",
+        "path": "./syntaxes/chocola.tmLanguage.json",
+        "embeddedLanguages": {
+          "source.js": "javascript",
+          "source.css": "css"
+        }
+      }
+    ],
+    "snippets": [
+      {
+        "language": "chocola",
+        "path": "./snippets/chocola.json"
+      }
+    ],
+    "jsonValidation": [
+      {
+        "fileMatch": "chocola.config.json",
+        "url": "./syntaxes/chocola-config-schema.json"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./tsconfig.json",
+    "watch": "tsc -watch -p ./tsconfig.json",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.0"
+  }
+}

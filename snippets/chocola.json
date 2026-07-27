@@ -1,0 +1,112 @@
+{
+  "Component scaffold": {
+    "prefix": "component",
+    "body": [
+      "<script>",
+      "\texport let ${1:name}${2: = ${3:value}};",
+      "",
+      "\tfunction \\$runtime(self, ctx) {",
+      "\t\t$0",
+      "\t}",
+      "</script>",
+      "",
+      "<template>",
+      "\t<div>",
+      "\t\t<slot></slot>",
+      "\t</div>",
+      "</template>",
+      "",
+      "<style>",
+      "\t:root {",
+      "\t\t$4",
+      "\t}",
+      "</style>"
+    ],
+    "description": "Full Chocola component scaffold"
+  },
+  "Script block": {
+    "prefix": "script",
+    "body": ["<script>", "\t$0", "</script>"],
+    "description": "Chocola <script> block"
+  },
+  "Template block": {
+    "prefix": "template",
+    "body": ["<template>", "\t$0", "</template>"],
+    "description": "Chocola <template> block"
+  },
+  "Style block": {
+    "prefix": "style",
+    "body": ["<style>", "\t$0", "</style>"],
+    "description": "Chocola <style> block"
+  },
+  "export let prop": {
+    "prefix": "export",
+    "body": ["export let ${1:name}${2: = ${3:value}};"],
+    "description": "Declare a component prop"
+  },
+  "$runtime function": {
+    "prefix": "runtime",
+    "body": ["function \\$runtime(self, ctx) {", "\t$0", "}"],
+    "description": "$runtime lifecycle function"
+  },
+  "self declaration": {
+    "prefix": "self",
+    "body": ["let self = new HTMLElement;"],
+    "description": "Self element reference declaration"
+  },
+  "if directive": {
+    "prefix": "if",
+    "body": ["${1:div} if={${2:condition}}>$0</${1:div}>"],
+    "description": "Conditional display directive"
+  },
+  "del:if directive": {
+    "prefix": "delif",
+    "body": ["${1:div} del:if={${2:condition}}>$0</${1:div}>"],
+    "description": "Conditional removal directive"
+  },
+  "elif directive": {
+    "prefix": "elif",
+    "body": ["${1:div} elif={${2:condition}}>$0</${1:div}>"],
+    "description": "Else-if conditional directive"
+  },
+  "else directive": {
+    "prefix": "else",
+    "body": ["${1:div} else>$0</${1:div}>"],
+    "description": "Else fallback directive"
+  },
+  "void element": {
+    "prefix": "void",
+    "body": ["<void${1: if={${2:condition}}}>", "\t$0", "</void>"],
+    "description": "Transparent wrapper element"
+  },
+  "slot element": {
+    "prefix": "slot",
+    "body": ["<slot></slot>"],
+    "description": "Content projection slot"
+  },
+  "bind:self": {
+    "prefix": "bindself",
+    "body": ["bind:self=\"${1:variableName}\""],
+    "description": "Bind element reference to variable"
+  },
+  "bind property": {
+    "prefix": "bind",
+    "body": ["bind:${1:property}=\"${2:variableName}\""],
+    "description": "Bind element property to variable"
+  },
+  "mount component": {
+    "prefix": "mount",
+    "body": ["new ${1:Component}().mount(${2:target}, { ${3:props} })"],
+    "description": "Mount a component via CSR"
+  },
+  "update component": {
+    "prefix": "update",
+    "body": ["${1:instance}.update({ ${2:props} })"],
+    "description": "Update a mounted component"
+  },
+  "remove component": {
+    "prefix": "remove",
+    "body": ["${1:instance}.remove()"],
+    "description": "Remove a mounted component"
+  }
+}

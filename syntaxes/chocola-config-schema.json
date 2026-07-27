@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Chocola Configuration",
+  "description": "Schema for chocola.config.json",
+  "type": "object",
+  "properties": {
+    "bundle": {
+      "type": "object",
+      "description": "Build/bundle configuration",
+      "properties": {
+        "srcDir": {
+          "type": "string",
+          "description": "Source directory",
+          "default": "src"
+        },
+        "outDir": {
+          "type": "string",
+          "description": "Output directory for compiled site",
+          "default": "dist"
+        },
+        "libDir": {
+          "type": "string",
+          "description": "Components library directory (relative to srcDir)",
+          "default": "lib"
+        },
+        "emptyOutDir": {
+          "type": "boolean",
+          "description": "Empty the output directory before each build",
+          "default": true
+        }
+      }
+    },
+    "dev": {
+      "type": "object",
+      "description": "Development server configuration",
+      "properties": {
+        "hostname": {
+          "type": "string",
+          "description": "Dev server hostname",
+          "default": "localhost"
+        },
+        "port": {
+          "type": "number",
+          "description": "Dev server port",
+          "default": 3000
+        }
+      }
+    }
+  }
+}

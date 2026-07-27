@@ -1,0 +1,218 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Chocola",
+  "scopeName": "text.html.chocola",
+  "fileTypes": ["html"],
+  "injections": {
+    "L: text.html.chocola - (meta.embedded.block.js.chocola | meta.embedded.block.css.chocola)": {
+      "patterns": [
+        { "include": "#interpolation" }
+      ]
+    }
+  },
+  "patterns": [
+    { "include": "#script-tag" },
+    { "include": "#style-tag" },
+    { "include": "#template-content" }
+  ],
+  "repository": {
+    "interpolation": {
+      "name": "meta.interpolation.chocola",
+      "begin": "(?<!=)\\{",
+      "end": "\\}",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.interpolation.begin.chocola" }
+      },
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.interpolation.end.chocola" }
+      },
+      "patterns": [
+        { "include": "source.js" }
+      ]
+    },
+
+    "script-tag": {
+      "name": "meta.embedded.block.js.chocola",
+      "begin": "<(?i)(script)\\b(?=[^>]*/>|(?:[^>]*?(?:type\\s*=\\s*['\"](?:text/javascript|module|application/javascript)['\"])?[^>]*>))",
+      "beginCaptures": {
+        "1": { "name": "entity.name.tag.script.chocola" }
+      },
+      "end": "(</)((?i)script)\\s*(>)",
+      "endCaptures": {
+        "1": { "name": "punctuation.definition.tag.end.html.js" },
+        "2": { "name": "entity.name.tag.script.chocola" },
+        "3": { "name": "punctuation.definition.tag.end.html.js" }
+      },
+      "patterns": [
+        {
+          "name": "source.js.chocola",
+          "patterns": [
+            { "include": "#props-declaration" },
+            { "include": "#runtime-function" },
+            { "include": "#self-declaration" },
+            { "include": "source.js" }
+          ]
+        }
+      ]
+    },
+
+    "props-declaration": {
+      "name": "meta.declaration.props.chocola",
+      "match": "\\b(export)\\s+(let)\\s+(\\w+)\\s*(=)?\\s*([^;]*)?\\s*;",
+      "captures": {
+        "1": { "name": "keyword.control.export.chocola" },
+        "2": { "name": "keyword.control.let.chocola" },
+        "3": { "name": "variable.other.readwrite.chocola" },
+        "4": { "name": "keyword.operator.assignment.chocola" },
+        "5": { "name": "source.js.chocola" }
+      }
+    },
+
+    "runtime-function": {
+      "name": "meta.function.runtime.chocola",
+      "match": "\\$runtime\\s*(\\()",
+      "captures": {
+        "0": { "name": "support.function.chocola" },
+        "1": { "name": "punctuation.definition.parameters.begin.chocola" }
+      }
+    },
+
+    "self-declaration": {
+      "name": "meta.declaration.self.chocola",
+      "match": "(let)\\s+(self)\\s*(=)\\s*new\\s+HTMLElement\\s*;",
+      "captures": {
+        "1": { "name": "keyword.control.let.chocola" },
+        "2": { "name": "variable.language.self.chocola" },
+        "3": { "name": "keyword.operator.assignment.chocola" }
+      }
+    },
+
+    "style-tag": {
+      "name": "meta.embedded.block.css.chocola",
+      "begin": "<(?i)(style)\\b(?=[^>]*/>|(?:[^>]*?>))",
+      "beginCaptures": {
+        "1": { "name": "entity.name.tag.style.chocola" }
+      },
+      "end": "(</)((?i)style)\\s*(>)",
+      "endCaptures": {
+        "1": { "name": "punctuation.definition.tag.end.html.css" },
+        "2": { "name": "entity.name.tag.style.chocola" },
+        "3": { "name": "punctuation.definition.tag.end.html.css" }
+      },
+      "patterns": [
+        {
+          "name": "source.css.chocola",
+          "patterns": [
+            { "include": "#root-selector" },
+            { "include": "source.css" }
+          ]
+        }
+      ]
+    },
+
+    "root-selector": {
+      "name": "meta.selector.root.chocola",
+      "match": ":root",
+      "captures": {
+        "0": { "name": "entity.other.attribute-name.pseudo-class.chocola" }
+      }
+    },
+
+    "template-content": {
+      "name": "meta.template.chocola",
+      "patterns": [
+        { "include": "#void-element" },
+        { "include": "#slot-element" },
+        { "include": "#directive-if" },
+        { "include": "#directive-del-if" },
+        { "include": "#directive-elif" },
+        { "include": "#directive-else" },
+        { "include": "#directive-bind" },
+        { "include": "#component-tag" },
+        { "include": "#html-tag" },
+        { "include": "#html-comment" },
+        { "include": "#interpolation" }
+      ]
+    },
+
+    "void-element": {
+      "name": "entity.name.tag.chocola.void",
+      "match": "</?void\\b[^>]*>"
+    },
+
+    "slot-element": {
+      "name": "entity.name.tag.chocola.slot",
+      "match": "</?slot\\b[^>]*>"
+    },
+
+    "directive-if": {
+      "name": "meta.directive.if.chocola",
+      "match": "(if)\\s*=\\s*\"\\s*\\{",
+      "captures": {
+        "1": { "name": "entity.other.attribute-name.chocola.directive" }
+      }
+    },
+
+    "directive-del-if": {
+      "name": "meta.directive.del-if.chocola",
+      "match": "(del:if)\\s*=\\s*\"\\s*\\{",
+      "captures": {
+        "1": { "name": "entity.other.attribute-name.chocola.directive" }
+      }
+    },
+
+    "directive-elif": {
+      "name": "meta.directive.elif.chocola",
+      "match": "(elif)\\s*=\\s*\"\\s*\\{",
+      "captures": {
+        "1": { "name": "entity.other.attribute-name.chocola.directive" }
+      }
+    },
+
+    "directive-else": {
+      "name": "meta.directive.else.chocola",
+      "match": "\\b(else)\\b(?=\\s*(?:>|/))",
+      "captures": {
+        "1": { "name": "entity.other.attribute-name.chocola.directive" }
+      }
+    },
+
+    "directive-bind": {
+      "name": "meta.directive.bind.chocola",
+      "match": "(bind):(self|[a-zA-Z_$][\\w$]*)\\s*=\\s*\"\\s*([a-zA-Z_$][\\w$]*)\\s*\"",
+      "captures": {
+        "1": { "name": "entity.other.attribute-name.chocola.directive" },
+        "2": { "name": "entity.other.attribute-name.chocola.bind-target" },
+        "3": { "name": "variable.other.readwrite.chocola" }
+      }
+    },
+
+    "component-tag": {
+      "name": "meta.tag.component.chocola",
+      "match": "(<|</)([A-Z][a-zA-Z0-9]*)\\b([^>]*?)(/?>)",
+      "captures": {
+        "1": { "name": "punctuation.definition.tag.begin.html" },
+        "2": { "name": "entity.name.tag.chocola.component" },
+        "3": { "name": "meta.tag.attributes.chocola" },
+        "4": { "name": "punctuation.definition.tag.end.html" }
+      }
+    },
+
+    "html-tag": {
+      "name": "meta.tag.other.chocola",
+      "match": "(<|</)([a-z][a-zA-Z0-9]*)\\b([^>]*?)(/?>)",
+      "captures": {
+        "1": { "name": "punctuation.definition.tag.begin.html" },
+        "2": { "name": "entity.name.tag.other.html" },
+        "3": { "name": "meta.tag.attributes.html" },
+        "4": { "name": "punctuation.definition.tag.end.html" }
+      }
+    },
+
+    "html-comment": {
+      "name": "comment.block.html",
+      "begin": "<!--",
+      "end": "-->"
+    }
+  }
+}
