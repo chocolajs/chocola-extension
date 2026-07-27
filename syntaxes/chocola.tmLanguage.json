@@ -202,9 +202,6 @@
           "include": "#html-comment"
         },
         {
-          "include": "#component-tag"
-        },
-        {
           "include": "#void-element"
         },
         {
@@ -232,13 +229,19 @@
     },
     "html-tag": {
       "name": "meta.tag.component.chocola",
-      "begin": "(<|</)([a-zA-Z0-9]*)\\b",
+      "begin": "(</?)(?:(slot|void)\\b|([a-z0-9-]+)\\b|([A-Z][a-zA-Z0-9-]+)\\b)",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.tag.begin.html"
         },
         "2": {
-          "name": "entity.name.tag.htmls"
+          "name": "keyword.control.js"
+        },
+        "3": {
+          "name": "entity.name.tag.html"
+        },
+        "4": {
+          "name": "variable.other.readwrite.alias.js"
         }
       },
       "end": "(/?>)",
@@ -276,78 +279,6 @@
       "name": "comment.block.html",
       "begin": "<!--",
       "end": "-->"
-    },
-    "component-tag": {
-      "name": "meta.tag.component.chocola",
-      "begin": "(<|</)([A-Z][a-zA-Z0-9]*)\\b",
-      "beginCaptures": {
-        "1": {
-          "name": "entity.name.tag.html"
-        },
-        "2": {
-          "name": "entity.name.tag.htmls"
-        }
-      },
-      "end": "(/?>)",
-      "endCaptures": {
-        "1": {
-          "name": "entity.name.tag.html"
-        }
-      },
-      "patterns": [
-        {
-          "match": "([a-zA-Z0-9_-]+)(\\s*)(=)(\\s*)(?:(')(\\{)(.*?)(\\})(')|(\")(\\{)(.*?)(\\})(\")|(\\{)(.*?)(\\}))",
-          "captures": {
-            "1": {
-              "name": "entity.other.attribute-name.html"
-            },
-            "3": {
-              "name": "keyword.operator.assignment.html"
-            },
-            "5": {
-              "name": "string.quoted.single.html"
-            },
-            "6": {
-              "name": "punctuation.section.embedded.begin.js"
-            },
-            "8": {
-              "name": "punctuation.section.embedded.end.js"
-            },
-            "9": {
-              "name": "string.quoted.double.html"
-            },
-            "11": {
-              "name": "punctuation.section.embedded.begin.js"
-            },
-            "12": {
-              "name": "variable.other.property.js"
-            },
-            "13": {
-              "name": "punctuation.section.embedded.end.js"
-            },
-            "14": {
-              "name": "punctuation.section.embedded.begin.js"
-            },
-            "16": {
-              "name": "punctuation.section.embedded.end.js"
-            }
-          }
-        },
-        {
-          "match": "([a-zA-Z0-9_-]+)(\\s*)(=)(\\s*)('(?:[^']*)'|\"(?:[^\"]*)\"|[^\\s/>]*)",
-          "captures": {
-            "1": {
-              "name": "entity.other.attribute-name.html"
-            },
-            "3": {
-              "name": "keyword.operator.assignment.html"
-            },
-            "5": {
-              "name": "string.quoted.html"
-            }
-          }
-        }
-      ]
     },
     "void-element": {
       "match": "(<|</)(void)\\b([^>]*?)(/?>)",
