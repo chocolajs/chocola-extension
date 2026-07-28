@@ -33,7 +33,7 @@
         },
         "aliases": ["Chocola", "chocola"],
         "extensions": [".html"],
-        "filenames": [],
+        "filenames": ["chocola.server.js", "chocola.js"],
         "configuration": "./language-configuration/language-configuration.json"
       }
     ],
