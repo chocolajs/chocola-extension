@@ -54,6 +54,9 @@
           "include": "#runtime-function"
         },
         {
+          "include": "#self-declaration"
+        },
+        {
           "include": "#self-var"
         },
         {
@@ -73,7 +76,7 @@
         }
       }
     },
-    "self-var": {
+    "self-declaration": {
       "name": "meta.declaration.self.chocola",
       "match": "(let\\s)(self)",
       "captures": {
@@ -81,6 +84,15 @@
           "name": "keyword.control.js"
         },
         "2": {
+          "name": "entity.other.attribute-name.html"
+        }
+      }
+    },
+    "self-var": {
+      "name": "meta.variable.self.chocola",
+      "match": "(self\\b)",
+      "captures": {
+        "1": {
           "name": "entity.other.attribute-name.html"
         }
       }
