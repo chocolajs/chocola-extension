@@ -110,7 +110,7 @@
   },
   "import component": {
     "prefix": "import",
-    "body": ["import ${1:Component} from \"./${2:path.html}\";$0"]
+    "body": ["import ${1:Component} from \"./${1:path}.html\";$0"]
   },
   "new component": {
     "prefix": "new",
