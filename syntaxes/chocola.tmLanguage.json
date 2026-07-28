@@ -130,49 +130,6 @@
         }
       }
     },
-    "style-tag": {
-      "name": "meta.embedded.block.css.chocola",
-      "begin": "<(?i)(style)\\b(?=[^>]*/>|(?:[^>]*?>))",
-      "beginCaptures": {
-        "1": {
-          "name": "entity.name.tag.style.chocola"
-        }
-      },
-      "end": "(</)((?i)style)\\s*(>)",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.end.html.css"
-        },
-        "2": {
-          "name": "entity.name.tag.style.chocola"
-        },
-        "3": {
-          "name": "punctuation.definition.tag.end.html.css"
-        }
-      },
-      "patterns": [
-        {
-          "name": "source.css.chocola",
-          "patterns": [
-            {
-              "include": "#root-selector"
-            },
-            {
-              "include": "source.css"
-            }
-          ]
-        }
-      ]
-    },
-    "root-selector": {
-      "name": "meta.selector.root.chocola",
-      "match": ":root",
-      "captures": {
-        "0": {
-          "name": "entity.other.attribute-name.pseudo-class.chocola"
-        }
-      }
-    },
     "template-content": {
       "name": "meta.template.chocola",
       "begin": "(<template>)",
@@ -431,6 +388,40 @@
           "name": "keyword.control.js"
         }
       }
+    },
+        "style-tag": {
+      "name": "meta.embedded.block.css.chocola",
+      "begin": "<(?i)(style)\\b(?=[^>]*/>|(?:[^>]*?(>)))",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.tag.html"
+        },
+        "2": {
+          "name": "punctuation.definition.tag.end.html.css"
+        }
+      },
+      "end": "(</)((?i)style)\\s*(>)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.end.html.css"
+        },
+        "2": {
+          "name": "entity.name.tag.style.chocola"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.end.html.css"
+        }
+      },
+      "patterns": [
+        {
+          "name": "source.css.chocola",
+          "patterns": [
+            {
+              "include": "source.css"
+            }
+          ]
+        }
+      ]
     }
   }
 }
