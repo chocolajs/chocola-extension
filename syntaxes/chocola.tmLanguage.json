@@ -50,6 +50,9 @@
     },
     {
       "include": "#template-content"
+    },
+    {
+      "include": "#attribute-value"
     }
   ],
   "repository": {
@@ -243,6 +246,9 @@
         },
         {
           "include": "#html-attributes"
+        },
+        {
+          "include": "#attribute-value"
         }
       ]
     },
@@ -262,20 +268,71 @@
         }
       }
     },
+    "attribute-value": {
+      "patterns": [
+        {
+          "begin": "(=)\\s*(\")",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.separator.key-value.html"
+            },
+            "2": {
+              "name": "punctuation.definition.string.begin.html"
+            }
+          },
+          "end": "(\")",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.string.end.html"
+            }
+          },
+          "name": "string.quoted.double.html.chocola",
+          "patterns": [
+            {
+              "include": "#interpolation"
+            }
+          ]
+        },
+        {
+          "begin": "(=)\\s*(')",
+          "beginCaptures": {
+            "1": {
+              "name": "punctuation.separator.key-value.html"
+            },
+            "2": {
+              "name": "punctuation.definition.string.begin.html"
+            }
+          },
+          "end": "(')",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.definition.string.end.html"
+            }
+          },
+          "name": "string.quoted.single.html.chocola",
+          "patterns": [
+            {
+              "include": "#interpolation"
+            }
+          ]
+        }
+      ]
+    },
     "interpolation": {
       "name": "meta.interpolation.chocola",
-      "begin": "(?<!=)\\{",
-      "end": "\\}",
+      "begin": "(\\{)",
+      "end": "(\\})",
       "beginCaptures": {
-        "0": {
-          "name": "punctuation.definition.interpolation.begin.chocola"
+        "1": {
+          "name": "source.js"
         }
       },
       "endCaptures": {
-        "0": {
-          "name": "meta.tag.attributes.html"
+        "1": {
+          "name": "source.js"
         }
       },
+      "contentName": "source.js",
       "patterns": [
         {
           "include": "source.js"
