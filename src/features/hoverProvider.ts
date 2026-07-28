@@ -114,7 +114,7 @@ export class ChocolaHoverProvider implements vscode.HoverProvider {
     if (!comp) return undefined;
 
     const propsList = comp.props.length > 0
-      ? comp.props.map(p => `- \`${p.name}\`${p.defaultValue ? ` = \`${p.defaultValue}\`` : ''}`).join('\n')
+      ? comp.props.map(p => `  ${p.name}: ${p.defaultValue ? `${p.defaultValue}` : 'any'},`).join('\n')
       : '_(no props)_';
 
     const relPath = path.relative(
@@ -123,7 +123,7 @@ export class ChocolaHoverProvider implements vscode.HoverProvider {
     );
 
     const md = new vscode.MarkdownString();
-    md.appendMarkdown(`**\`<${word}>\`** — Chocola component\n\n**Props:**\n${propsList}\n\n📄 \`${relPath}\``);
+    md.appendMarkdown(`Chocola component\n\n\`\`\`typescript\ninterface ${word.replace("<", "").replace(">", "")} {\n${propsList}\n}\n\`\`\`\n\n_\`${relPath}\`_`);
     return new vscode.Hover(md);
   }
 
