@@ -137,12 +137,12 @@ export class ChocolaCompletionProvider implements vscode.CompletionItemProvider 
     if (linePrefix.endsWith('<')) {
       const voidItem = new vscode.CompletionItem('void', vscode.CompletionItemKind.Constructor);
       voidItem.detail = 'Transparent wrapper (not rendered in DOM)';
-      voidItem.insertText = new vscode.SnippetString('void>$0</void>');
+      voidItem.insertText = new vscode.SnippetString('<void>$0</void>');
       items.push(voidItem);
 
       const slotItem = new vscode.CompletionItem('slot', vscode.CompletionItemKind.Constructor);
       slotItem.detail = 'Content projection placeholder';
-      slotItem.insertText = new vscode.SnippetString('slot></slot>');
+      slotItem.insertText = new vscode.SnippetString('<slot></slot>');
       items.push(slotItem);
     }
 
@@ -170,14 +170,14 @@ export class ChocolaCompletionProvider implements vscode.CompletionItemProvider 
       item.detail = `Chocola component (${comp.props.length} props)`;
 
       if (comp.props.length > 0) {
-        const propParts = comp.props.map(p =>
-          `${p.name}="{${p.defaultValue ? p.defaultValue : '${1:' + p.name + '}'}}"`
+        const propParts = comp.props.map((p, i) =>
+          `${p.name}="{${p.defaultValue ? p.defaultValue : '${' + (i + 1) + ':' + p.name + '}'}}"`
         );
         item.insertText = new vscode.SnippetString(
-          `${comp.name} ${propParts.join(' ')}$0></${comp.name}>`
+          `<${comp.name} ${propParts.join(' ')}$0></${comp.name}>`
         );
       } else {
-        item.insertText = new vscode.SnippetString(`${comp.name}></${comp.name}>`);
+        item.insertText = new vscode.SnippetString(`<${comp.name}></${comp.name}>`);
       }
 
       items.push(item);
