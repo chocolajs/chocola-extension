@@ -27,6 +27,10 @@
     "languages": [
       {
         "id": "chocola",
+        "icon": {
+          "light": "./images/icon.png",
+          "dark": "./images/icon.png"
+        },
         "aliases": ["Chocola", "chocola"],
         "extensions": [".html"],
         "filenames": [],
