@@ -51,55 +51,37 @@
       },
       "patterns": [
         {
+          "include": "#runtime-function"
+        },
+        {
+          "include": "#self-var"
+        },
+        {
           "include": "source.js"
         }
       ]
     },
-    "props-declaration": {
-      "name": "meta.declaration.props.chocola",
-      "match": "\\b(export)\\s+(let)\\s+(\\w+)\\s*(=)?\\s*([^;]*)?\\s*;",
-      "captures": {
-        "1": {
-          "name": "keyword.control.export.chocola"
-        },
-        "2": {
-          "name": "keyword.control.let.chocola"
-        },
-        "3": {
-          "name": "variable.other.readwrite.chocola"
-        },
-        "4": {
-          "name": "keyword.operator.assignment.chocola"
-        },
-        "5": {
-          "name": "source.js.chocola"
-        }
-      }
-    },
     "runtime-function": {
       "name": "meta.function.runtime.chocola",
-      "match": "\\$runtime\\s*(\\()",
+      "match": "\\b(function\\s)(\\$runtime)",
       "captures": {
-        "0": {
-          "name": "support.function.chocola"
-        },
         "1": {
-          "name": "punctuation.definition.parameters.begin.chocola"
+          "name": "keyword.control.js"
+        },
+        "2": {
+          "name": "entity.other.attribute-name.html"
         }
       }
     },
-    "self-declaration": {
+    "self-var": {
       "name": "meta.declaration.self.chocola",
-      "match": "(let)\\s+(self)\\s*(=)\\s*new\\s+HTMLElement\\s*;",
+      "match": "\\b(let\\s)(self)",
       "captures": {
         "1": {
-          "name": "keyword.control.let.chocola"
+          "name": "keyword.control.js"
         },
         "2": {
-          "name": "variable.language.self.chocola"
-        },
-        "3": {
-          "name": "keyword.operator.assignment.chocola"
+          "name": "entity.other.attribute-name.html"
         }
       }
     },
