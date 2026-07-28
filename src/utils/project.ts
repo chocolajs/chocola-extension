@@ -74,6 +74,23 @@ export function extractProps(filePath: string): PropInfo[] {
   return props;
 }
 
+export function getImportedComponents(document: vscode.TextDocument): string[] {
+  const text = document.getText();
+  const scriptMatch = text.match(/<script>([\s\S]*?)<\/script>/);
+  if (!scriptMatch) return [];
+
+  const docDir = path.dirname(document.fileName);
+  const names: string[] = [];
+  const re = new RegExp(COMPONENT_IMPORT_RE.source, 'g');
+  let match: RegExpExecArray | null;
+  while ((match = re.exec(scriptMatch[1])) !== null) {
+    const resolvedPath = path.resolve(docDir, match[2]);
+    const name = path.basename(resolvedPath, '.html');
+    names.push(name);
+  }
+  return names;
+}
+
 export function getComponentNameFromTag(document: vscode.TextDocument, position: vscode.Position): string | undefined {
   const line = document.lineAt(position.line).text;
   const tagMatch = line.match(/<(\/?)([A-Z][a-zA-Z0-9]*)\b/);

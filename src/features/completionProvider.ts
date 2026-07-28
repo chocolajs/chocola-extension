@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { findComponents, getLibDir } from '../utils/project';
+import { findComponents, getImportedComponents, getLibDir } from '../utils/project';
 
 interface DirectiveDef {
   label: string;
@@ -71,7 +71,7 @@ export class ChocolaCompletionProvider implements vscode.CompletionItemProvider 
 
     if (inTemplate || this.isTopLevel(document, position)) {
       items.push(...this.getTemplateCompletions(document, linePrefix));
-      items.push(...this.getComponentCompletions());
+      items.push(...this.getComponentCompletions(document));
     }
 
     return items;
@@ -159,13 +159,19 @@ export class ChocolaCompletionProvider implements vscode.CompletionItemProvider 
     return items;
   }
 
-  private getComponentCompletions(): vscode.CompletionItem[] {
+  private getComponentCompletions(document: vscode.TextDocument): vscode.CompletionItem[] {
     const items: vscode.CompletionItem[] = [];
     const libDir = getLibDir();
     if (!libDir) return items;
 
     const components = findComponents(libDir);
+    if (components.length === 0) return items;
+
+    const importedNames = new Set(getImportedComponents(document));
+    if (importedNames.size === 0) return items;
+
     for (const comp of components) {
+      if (!importedNames.has(comp.name)) continue;
       const item = new vscode.CompletionItem(comp.name, vscode.CompletionItemKind.Class);
       item.detail = `Chocola component (${comp.props.length} props)`;
 
