@@ -195,7 +195,7 @@
           "name": "punctuation.definition.tag.begin.html"
         },
         "2": {
-          "name": "keyword.control.js"
+          "name": "support.type.primitive.ts"
         },
         "3": {
           "name": "entity.name.tag.html"
@@ -223,7 +223,7 @@
       "match": "(?:\\s)(if|del:if|elif|else|bind:\\w+|\\$bake)",
       "captures": {
         "1": {
-          "name": "storage.type.class.jsdoc"
+          "name": "support.type.primitive.ts"
         }
       }
     },
