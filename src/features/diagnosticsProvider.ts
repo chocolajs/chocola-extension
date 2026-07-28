@@ -132,7 +132,7 @@ export class ChocolaDiagnosticsProvider {
     if (!scriptMatch) return;
 
     const declaredVars = new Set<string>();
-    const letRe = /let\s+(\w+)\s*=/g;
+    const letRe = /let\s+(\w+)(?:\s*[=;])/g;
     let m: RegExpExecArray | null;
     while ((m = letRe.exec(scriptMatch[1])) !== null) {
       declaredVars.add(m[1]);
