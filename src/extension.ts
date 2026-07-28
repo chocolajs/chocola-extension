@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { ChocolaCompletionProvider } from './features/completionProvider';
+import { ChocolaFormattingProvider } from './features/formattingProvider';
 import { ChocolaHoverProvider } from './features/hoverProvider';
 import { ChocolaDiagnosticsProvider } from './features/diagnosticsProvider';
 
@@ -18,6 +19,13 @@ export function activate(context: vscode.ExtensionContext) {
       ':',
       '=',
       '"'
+    )
+  );
+
+  context.subscriptions.push(
+    vscode.languages.registerDocumentFormattingEditProvider(
+      chocolaSelector,
+      new ChocolaFormattingProvider()
     )
   );
 
