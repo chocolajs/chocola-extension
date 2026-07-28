@@ -1,12 +1,16 @@
 {
   "name": "chocola-intellisense",
   "displayName": "Chocola Intellisense",
-  "description": "Intellisense for Chocola SFC components — syntax highlighting, autocomplete, hover info, and diagnostics",
+  "icon": "images/icon.png",
+  "description": "Intellisense for Chocola — syntax highlighting, autocomplete, hover info, and diagnostics",
   "version": "0.1.0",
-  "publisher": "chocola",
+  "publisher": "chocolajs",
   "license": "MIT",
   "engines": {
     "vscode": "^1.85.0"
+  },
+  "repository": {
+    "url": "https://github.com/chocolajs/chocola"
   },
   "categories": [
     "Programming Languages",
