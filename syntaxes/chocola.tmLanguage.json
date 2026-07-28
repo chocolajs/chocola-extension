@@ -63,7 +63,7 @@
     },
     "runtime-function": {
       "name": "meta.function.runtime.chocola",
-      "match": "\\b(function\\s)(\\$runtime)",
+      "match": "(function\\s)(\\$runtime)",
       "captures": {
         "1": {
           "name": "keyword.control.js"
@@ -75,7 +75,7 @@
     },
     "self-var": {
       "name": "meta.declaration.self.chocola",
-      "match": "\\b(let\\s)(self)",
+      "match": "(let\\s)(self)",
       "captures": {
         "1": {
           "name": "keyword.control.js"
