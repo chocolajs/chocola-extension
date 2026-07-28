@@ -22,6 +22,33 @@
       "include": "#style-tag"
     },
     {
+      "include": "#html-comment"
+    },
+    {
+      "include": "#html-tag"
+    },
+    {
+      "include": "#void-element"
+    },
+    {
+      "include": "#slot-element"
+    },
+    {
+      "include": "#directive-elif"
+    },
+    {
+      "include": "#directive-else"
+    },
+    {
+      "include": "#directive-bind"
+    },
+    {
+      "include": "#directive-if"
+    },
+    {
+      "include": "#directive-del-if"
+    },
+    {
       "include": "#template-content"
     }
   ],
