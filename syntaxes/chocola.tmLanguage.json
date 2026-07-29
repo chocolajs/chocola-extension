@@ -179,7 +179,7 @@
     },
     "html-tag": {
       "name": "meta.tag.component.chocola",
-      "begin": "(</?)(?:(slot|void)\\b|([a-z0-9-]+)\\b|([A-Z][a-zA-Z0-9-]+)\\b)",
+      "begin": "(</?)(?:(slot|void|const|let)\\b|([a-z0-9-]+)\\b|([A-Z][a-zA-Z0-9-]+)\\b)",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.tag.begin.html"
@@ -213,7 +213,7 @@
       ]
     },
     "chocola-attributes": {
-      "match": "(?:\\s)(if|del:if|elif|else|bind:\\w+|\\$bake)",
+      "match": "(?:\\s)(if|del:if|elif|else|bind:\\w+|on:\\w+|style:\\w+|class:\\w+|for:each|as:html|[a-zA-Z0-9-]+\\?|\\$bake)",
       "captures": {
         "1": {
           "name": "support.type.primitive.ts"
